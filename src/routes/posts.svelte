@@ -6,7 +6,9 @@
   } from 'src/data/posts';
   import Posts from 'src/components/content/posts.svelte';
 
-  console.log(posts);
+  export let params = {};
+
+  $: post = findPost(params.post);
 </script>
 
 <template>
@@ -14,6 +16,14 @@
   <main>
     <article>
       Article
+
+      {#if params.post}
+        {params.post}
+      {/if}
+
+      {#if post }
+        {@html post.html}
+      {/if}
     </article>
     <aside>
       Aside

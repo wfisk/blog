@@ -5,7 +5,7 @@ import route_not_found from './routes/not-found.svelte';
 export default {
   // Exact path
   '/': route_home,
-  '/posts': route_posts,
+  '/posts/:post?': route_posts,
 
 
 

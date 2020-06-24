@@ -29,8 +29,6 @@ export const posts = files.map(({
 
 // provide a way to find a post by permalink
 export function findPost(permalink) {
-  // use lodash to find by field name:
-  return _.find(posts, {
-    permalink
-  })
+  return posts.find(post => post.permalink === permalink);
+
 }
