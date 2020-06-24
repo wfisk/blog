@@ -1,4 +1,7 @@
 <script>
+  import {
+    fade
+  } from 'svelte/transition';
   // import posts from '../posts/*.md';
   import {
     posts,
@@ -7,8 +10,17 @@
   import Posts from 'src/components/content/posts.svelte';
 
   export let params = {};
+  const timeout = 300;
+  let show = true;
+
+  const change = () => {
+    show = !show;
+  };
 
   $: post = findPost(params.post);
+
+
+  $: change(post);
 </script>
 
 <template>
@@ -22,8 +34,24 @@
       {/if}
 
       {#if post }
-        {@html post.html}
+        {#if show}
+          <div 
+            in:fade="{{ delay: 300, duration: 300 }}"
+            out:fade="{{ delay: 0, duration: 300 }}"
+          >
+            {@html post.html}
+          </div>
+        {:else}
+          <div 
+            in:fade="{{ delay: 300, duration: 300 }}"
+            out:fade="{{ delay: 0, duration: 300 }}"
+          >
+            {@html post.html}
+          </div>
+        {/if}
       {/if}
+
+
     </article>
     <aside>
       Aside
